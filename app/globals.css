@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+:root {
+  --canvas: #0b0f14;
+  --panel: #151c24;
+  --panel-2: #10161d;
+  --ink: #e8eef4;
+  --muted: #8b9bb0;
+  --dim: #5c6b7e;
+  --line: #243040;
+  --line-strong: #3a4a5c;
+  --cyan: #7dd3e8;
+  --cyan-dim: #3a7a8a;
+  --amber: #e8b86d;
+  --crit: #e05252;
+  --ok: #5bd6a0;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-dim: var(--dim);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-cyan: var(--cyan);
+  --color-cyan-dim: var(--cyan-dim);
+  --color-amber: var(--amber);
+  --color-crit: var(--crit);
+  --color-ok: var(--ok);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html,
+body {
+  background: var(--canvas);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.011em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--cyan) 35%, transparent);
+  color: var(--ink);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--line) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--line) 55%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center top;
+}
+
+.vignette {
+  background:
+    radial-gradient(1200px 700px at 50% -10%, color-mix(in srgb, var(--cyan) 7%, transparent), transparent 60%),
+    radial-gradient(900px 500px at 80% 120%, color-mix(in srgb, #1a2430 80%, transparent), transparent 50%);
+}
+
+.label {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.hairline {
+  border: 1px solid var(--line);
+}
+
+.panel {
+  background: color-mix(in srgb, var(--panel) 88%, transparent);
+  border: 1px solid var(--line);
+}
+
+@keyframes pulse-amber {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes pulse-crit {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.pulse-amber {
+  animation: pulse-amber 1.6s ease-in-out infinite;
+}
+
+.pulse-crit {
+  animation: pulse-crit 1.1s ease-in-out infinite;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+input,
+textarea,
+select {
+  background: var(--panel-2);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--cyan-dim);
+}
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
