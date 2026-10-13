@@ -13,13 +13,13 @@ export function SiteFooter() {
             </span>
           </div>
           <p className="mt-4 max-w-sm text-sm leading-6 text-muted">
-            Decision support for zoos, wildlife parks, and sanctuaries. Software
-            supplements barriers, locks, procedures, and trained teams. It does
-            not replace them.
+            An early-stage idea for protecting people and wildlife. Looking for
+            zoo teams, collaborators, and like-minded people to help bring it to
+            life.
           </p>
         </div>
         <div className="md:col-span-2">
-          <div className="label mb-3">Product</div>
+          <div className="label mb-3">Explore the idea</div>
           <ul className="space-y-2 text-sm text-muted">
             <li>
               <Link href="/aegis" className="hover:text-ink">
@@ -39,7 +39,7 @@ export function SiteFooter() {
           </ul>
         </div>
         <div className="md:col-span-2">
-          <div className="label mb-3">Company</div>
+          <div className="label mb-3">Connect</div>
           <ul className="space-y-2 text-sm text-muted">
             <li>
               <Link href="/company" className="hover:text-ink">
@@ -48,7 +48,7 @@ export function SiteFooter() {
             </li>
             <li>
               <Link href="/contact" className="hover:text-ink">
-                Briefing
+                Get involved
               </Link>
             </li>
             <li>
@@ -61,9 +61,9 @@ export function SiteFooter() {
         <div className="md:col-span-3">
           <div className="label mb-3">Status</div>
           <p className="text-sm leading-6 text-muted">
-            Stage 1 concept demonstration. Simulated events and metrics. Not a
-            fielded safety system. Not affiliated with Anduril Industries or
-            Palantir Technologies.
+            Concept & prototype. Open to feedback, introductions, and
+            collaboration. All demonstrations use simulated data. Not a deployed
+            safety system.
           </p>
         </div>
       </div>

@@ -5,12 +5,12 @@ import { useFrame } from "@react-three/fiber";
 import type { Group, MeshStandardMaterial } from "three";
 import type { SentinelPart } from "./parts";
 
-const BODY = "#1a222c";
-const PLATE = "#2b3542";
-const DARK = "#0e141a";
+const BODY = "#858e7c";
+const PLATE = "#57634e";
+const DARK = "#242e20";
 const GLASS = "#08141c";
-const RING = "#8aa0b0";
-const CYAN = "#7dd3e8";
+const RING = "#b6bfab";
+const CYAN = "#c2d5a4";
 
 const EXPLODE: Record<SentinelPart, [number, number, number]> = {
   housing: [0, 0, 0],
@@ -25,18 +25,20 @@ const EXPLODE: Record<SentinelPart, [number, number, number]> = {
 function selectMat(selected: boolean, base: string) {
   return {
     color: base,
-    metalness: 0.78,
-    roughness: 0.36,
+    metalness: 0.32,
+    roughness: 0.52,
     emissive: selected ? CYAN : "#000000",
     emissiveIntensity: selected ? 0.08 : 0,
   };
 }
 
 export function SentinelModel({
+  reducedMotion,
   exploded,
   selected,
   onSelect,
 }: {
+  reducedMotion: boolean;
   exploded: boolean;
   selected: SentinelPart;
   onSelect: (part: SentinelPart) => void;
@@ -47,7 +49,9 @@ export function SentinelModel({
   const led = useRef<MeshStandardMaterial>(null);
 
   useFrame((_, dt) => {
-    current.current += (target.e - current.current) * Math.min(1, dt * 5);
+    current.current = reducedMotion
+      ? target.e
+      : current.current + (target.e - current.current) * Math.min(1, dt * 5);
     const k = current.current;
     if (!group.current) return;
     group.current.children.forEach((child) => {
@@ -57,7 +61,9 @@ export function SentinelModel({
       child.position.set(x * k, y * k, z * k);
     });
     if (led.current) {
-      led.current.emissiveIntensity = 0.55 + Math.sin(performance.now() / 280) * 0.25;
+      led.current.emissiveIntensity = reducedMotion
+        ? 0.55
+        : 0.55 + Math.sin(performance.now() / 280) * 0.25;
     }
   });
 
@@ -95,19 +101,31 @@ export function SentinelModel({
         {[-0.5, 0.5].map((x) => (
           <mesh key={x} position={[x, 0.18, 0.44]}>
             <cylinderGeometry args={[0.03, 0.03, 0.04, 10]} />
-            <meshStandardMaterial color={RING} metalness={0.9} roughness={0.2} />
+            <meshStandardMaterial
+              color={RING}
+              metalness={0.9}
+              roughness={0.2}
+            />
           </mesh>
         ))}
       </group>
 
       <group userData={{ part: "optic" }} onClick={pick("optic")}>
-        <mesh position={[0, 0.06, 0.58]} rotation={[Math.PI / 2, 0, 0]} castShadow>
+        <mesh
+          position={[0, 0.06, 0.58]}
+          rotation={[Math.PI / 2, 0, 0]}
+          castShadow
+        >
           <cylinderGeometry args={[0.28, 0.3, 0.38, 40]} />
           <meshStandardMaterial {...selectMat(selected === "optic", PLATE)} />
         </mesh>
         <mesh position={[0, 0.06, 0.78]} rotation={[Math.PI / 2, 0, 0]}>
           <cylinderGeometry args={[0.24, 0.24, 0.08, 40]} />
-          <meshStandardMaterial color={RING} metalness={0.95} roughness={0.15} />
+          <meshStandardMaterial
+            color={RING}
+            metalness={0.95}
+            roughness={0.15}
+          />
         </mesh>
         <mesh position={[0, 0.06, 0.84]} rotation={[Math.PI / 2, 0, 0]}>
           <cylinderGeometry args={[0.2, 0.2, 0.05, 40]} />
@@ -132,7 +150,11 @@ export function SentinelModel({
         </mesh>
         <mesh position={[0.52, 0.04, 0.5]} rotation={[Math.PI / 2, 0, 0]}>
           <cylinderGeometry args={[0.1, 0.1, 0.05, 24]} />
-          <meshStandardMaterial color="#4a2218" metalness={0.35} roughness={0.18} />
+          <meshStandardMaterial
+            color="#4a2218"
+            metalness={0.35}
+            roughness={0.18}
+          />
         </mesh>
       </group>
 
@@ -144,7 +166,11 @@ export function SentinelModel({
         {[-0.24, -0.08, 0.08, 0.24].map((x) => (
           <mesh key={x} position={[x, -0.28, -0.42]}>
             <boxGeometry args={[0.06, 0.2, 0.1]} />
-            <meshStandardMaterial color={DARK} metalness={0.5} roughness={0.48} />
+            <meshStandardMaterial
+              color={DARK}
+              metalness={0.5}
+              roughness={0.48}
+            />
           </mesh>
         ))}
       </group>
@@ -156,7 +182,11 @@ export function SentinelModel({
         </mesh>
         <mesh position={[0.34, 0.96, -0.12]}>
           <sphereGeometry args={[0.045, 16, 16]} />
-          <meshStandardMaterial color={CYAN} emissive={CYAN} emissiveIntensity={0.4} />
+          <meshStandardMaterial
+            color={CYAN}
+            emissive={CYAN}
+            emissiveIntensity={0.4}
+          />
         </mesh>
       </group>
 

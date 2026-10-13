@@ -1,58 +1,75 @@
 "use client";
-
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { FacilityMap } from "@/components/command/FacilityMap";
 import { deriveState, initialFlags } from "@/lib/demo/engine";
-import { Corners } from "@/components/site/Corners";
-
+import { Icon } from "@/components/site/Icon";
+const SCENES = [
+  { label: "Observe", time: 0 },
+  { label: "Detect", time: 9000 },
+  { label: "Corroborate", time: 18000 },
+];
 export function HeroConsole() {
-  const [elapsed, setElapsed] = useState(0);
-
-  useEffect(() => {
-    let last = performance.now();
-    let id = 0;
-    const tick = (now: number) => {
-      const dt = now - last;
-      last = now;
-      setElapsed((e) => {
-        const next = e + dt;
-        return next > 22000 ? 0 : next;
-      });
-      id = requestAnimationFrame(tick);
-    };
-    id = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(id);
-  }, []);
-
-  const state = useMemo(
-    () => deriveState(elapsed, initialFlags(), "CAM-04"),
-    [elapsed],
-  );
-
+  const [scene, setScene] = useState(0);
+  const state = deriveState(SCENES[scene].time, initialFlags(), "CAM-04");
   return (
-    <div className="relative">
-      <Corners />
-      <div className="flex items-center justify-between border-b border-line px-4 py-2">
-        <div className="flex items-center gap-3">
-          <span className="label !text-cyan">Aegis command</span>
-          <span className="label">Northridge Wildlife Park</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="label !text-amber">Simulation</span>
-          <span className="font-mono text-[12px]">{state.clock}</span>
-        </div>
-      </div>
-      <div className="h-[340px] md:h-[420px]">
-        <FacilityMap state={state} compact />
-      </div>
-      <div className="flex items-center justify-between border-t border-line px-4 py-2">
-        <span className="font-mono text-[11px] text-muted">
-          {state.events[0]?.title ?? "All nodes healthy"}
+    <div className="hero-console">
+      <div className="console-top">
+        <span>
+          <Icon name="grid" size={16} /> AEGIS <b>COMMAND</b>
         </span>
-        <Link href="/command" className="label !text-cyan">
-          Launch full simulation →
-        </Link>
+        <span className="console-site">
+          Northridge Wildlife Park <span className="status-dot" />
+        </span>
+        <span className="simulation-tag">SIMULATION</span>
+      </div>
+      <div className="console-body">
+        <div className="console-map">
+          <FacilityMap state={state} compact />
+        </div>
+        <div className="console-intel">
+          <div className="eyebrow">FACILITY INTELLIGENCE</div>
+          <h3>
+            Awareness,
+            <br />
+            without the noise.
+          </h3>
+          <div className="console-metric">
+            <span>Coverage status</span>
+            <strong className="text-ok">{state.coverage}</strong>
+          </div>
+          <div className="console-metric">
+            <span>Risk assessment</span>
+            <strong className={state.risk === "LOW" ? "text-ok" : "text-amber"}>
+              {state.risk}
+            </strong>
+          </div>
+          <div className="intel-note">
+            <Icon name="scan" size={20} />
+            <p>{state.uncertainty}</p>
+          </div>
+          <Link href="/command" className="text-link">
+            Open simulation <Icon name="arrow" />
+          </Link>
+        </div>
+      </div>
+      <div className="console-bottom">
+        <div className="scene-tabs" aria-label="Preview incident stage">
+          {SCENES.map((item, i) => (
+            <button
+              key={item.label}
+              type="button"
+              aria-pressed={scene === i}
+              onClick={() => setScene(i)}
+            >
+              <span>0{i + 1}</span>
+              {item.label}
+            </button>
+          ))}
+        </div>
+        <span className="console-hint">
+          SELECT A STAGE TO EXPLORE <Icon name="arrow" size={14} />
+        </span>
       </div>
     </div>
   );

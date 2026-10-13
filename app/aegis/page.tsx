@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { HeroConsole } from "@/components/home/HeroConsole";
 import { Button } from "@/components/site/Button";
 import { MarketingShell } from "@/components/site/MarketingShell";
 
 export const metadata: Metadata = {
-  title: "Aegis",
+  title: "The platform concept",
   description:
-    "The Aegis common operating picture for zoos and wildlife parks — fusion, health, playbooks, and human command.",
+    "Explore the proposed Aegis platform and its early prototype. Help shape how evidence, facility awareness, and human-led response could come together.",
 };
 
 export default function AegisPage() {
@@ -13,19 +14,30 @@ export default function AegisPage() {
     <MarketingShell>
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1400px] px-4 py-20 sm:px-6">
-          <p className="label !text-cyan">Software</p>
-          <h1 className="mt-4 max-w-3xl text-5xl tracking-tight">Aegis</h1>
+          <p className="label !text-cyan">The idea · software prototype</p>
+          <h1 className="mt-4 max-w-3xl text-5xl tracking-tight">
+            Clarity at the
+            <br />
+            center of operations.
+          </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-muted">
-            Fragmented cameras become a shared incident picture: where it is,
-            which sensors agree, what is uncertain, who has command, and which
-            approved check comes next.
+            The proposed platform would bring cameras, sensors, and team context
+            into a shared view. This early prototype explores what that could
+            feel like—and invites people with real-world experience to help
+            improve it.
           </p>
           <div className="mt-8 flex gap-3">
-            <Button href="/command">Open command</Button>
-            <Button href="/sentinel" variant="ghost">
-              Sentinel nodes
+            <Button href="/contact">Help shape the idea</Button>
+            <Button href="/command" variant="ghost">
+              Try the prototype
             </Button>
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-line">
+        <div className="page-width py-12">
+          <HeroConsole />
         </div>
       </section>
 
@@ -57,12 +69,14 @@ export default function AegisPage() {
         <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6">
           <div className="label">Sensor fusion</div>
           <h2 className="mt-4 max-w-2xl text-3xl tracking-tight">
-            A camera track plus a quiet gate is not the same as a confirmed entry.
+            A camera track plus a quiet gate is not the same as a confirmed
+            entry.
           </h2>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-muted">
-            Aegis preserves source, timestamp, quality, and confidence. Conflicting
-            evidence stays visible: “camera indicates entry; gate sensor unchanged.”
-            Behavior analytics report observable patterns, not medical diagnoses.
+            Aegis preserves source, timestamp, quality, and confidence.
+            Conflicting evidence stays visible: “camera indicates entry; gate
+            sensor unchanged.” Behavior analytics report observable patterns,
+            not medical diagnoses.
           </p>
           <div className="mt-10 overflow-x-auto border border-line">
             <table className="w-full min-w-[640px] text-left text-sm">
@@ -76,11 +90,36 @@ export default function AegisPage() {
               </thead>
               <tbody className="text-muted">
                 {[
-                  ["Visible camera", "Track, zone, obstruction", "Early warning", "Primary visual evidence"],
-                  ["Fence / boundary", "Vibration or break", "Low confidence", "Independent crossing cue"],
-                  ["Gate / lock", "State of transfer and public doors", "Health / procedure", "Rules out or confirms path"],
-                  ["Access control", "Keeper in authorized zone", "Context", "Reduces nuisance alerts"],
-                  ["Edge health", "Power, freeze, tamper", "Coverage map", "Safe degradation"],
+                  [
+                    "Visible camera",
+                    "Track, zone, obstruction",
+                    "Early warning",
+                    "Primary visual evidence",
+                  ],
+                  [
+                    "Fence / boundary",
+                    "Vibration or break",
+                    "Low confidence",
+                    "Independent crossing cue",
+                  ],
+                  [
+                    "Gate / lock",
+                    "State of transfer and public doors",
+                    "Health / procedure",
+                    "Rules out or confirms path",
+                  ],
+                  [
+                    "Access control",
+                    "Keeper in authorized zone",
+                    "Context",
+                    "Reduces nuisance alerts",
+                  ],
+                  [
+                    "Edge health",
+                    "Power, freeze, tamper",
+                    "Coverage map",
+                    "Safe degradation",
+                  ],
                 ].map((row) => (
                   <tr key={row[0]} className="border-t border-line">
                     {row.map((cell) => (
@@ -100,22 +139,27 @@ export default function AegisPage() {
         <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 md:grid md:grid-cols-2 md:gap-16">
           <div>
             <div className="label">Accountability</div>
-            <h2 className="mt-4 text-3xl tracking-tight">Every action has an owner.</h2>
+            <h2 className="mt-4 text-3xl tracking-tight">
+              Every action has an owner.
+            </h2>
             <p className="mt-4 text-sm leading-7 text-muted">
-              Acknowledgements, approvals, configuration changes, and exports are
-              logged. High-impact actions require stronger control than an
-              acknowledgement: role restriction, deliberate confirm, and a clear
-              abort path. Exact mechanisms come from site risk analysis — not from
-              the demo.
+              The proposed platform would record acknowledgements, approvals,
+              configuration changes, and exports. High-impact actions require
+              stronger control than an acknowledgement: role restriction,
+              deliberate confirm, and a clear abort path. Exact mechanisms come
+              from site risk analysis — not from the demo.
             </p>
           </div>
           <div>
             <div className="label">Limits</div>
-            <h2 className="mt-4 text-3xl tracking-tight">Aegis does not act for you.</h2>
+            <h2 className="mt-4 text-3xl tracking-tight">
+              Aegis does not act for you.
+            </h2>
             <p className="mt-4 text-sm leading-7 text-muted">
-              No autonomous gates, deterrents, or physical intervention. No claim
-              of guaranteed detection. Models are versioned and rollback-capable.
-              Safety-critical rules do not ride an unreviewed model update.
+              No autonomous gates, deterrents, or physical intervention. No
+              claim of guaranteed detection. Models are versioned and
+              rollback-capable. Safety-critical rules do not ride an unreviewed
+              model update.
             </p>
           </div>
         </div>

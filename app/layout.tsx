@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://aegiswildlife.systems"),
   title: {
-    default: `${SITE.name} — Common operating picture for animal facilities`,
+    default: `${SITE.name} — An invitation to build together`,
     template: `%s · ${SITE.name}`,
   },
   description: SITE.tagline,
@@ -33,17 +33,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-canvas font-sans text-ink">{children}</body>
+      <body className="min-h-full bg-canvas font-sans text-ink">
+        {children}
+      </body>
     </html>
   );
 }

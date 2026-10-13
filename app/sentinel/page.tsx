@@ -15,11 +15,16 @@ export default function SentinelPage() {
       <section className="border-b border-line">
         <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6">
           <p className="label !text-cyan">Hardware · concept</p>
-          <h1 className="mt-4 text-5xl tracking-tight">Sentinel</h1>
+          <h1 className="mt-4 text-5xl tracking-tight">
+            Intelligence.
+            <br />
+            At the edge.
+          </h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-muted">
-            A ruggedized fixed node that watches approach zones and public
-            barriers. Sentinel observes, detects, verifies, and communicates. It
-            is a safety system, not a weapon system.
+            Sentinel is a hardware concept for local sensing at wildlife
+            facilities. The interactive model explores the idea. I’m looking to
+            connect with hardware builders, researchers, and animal-care teams
+            to understand what a useful, responsible field system would need.
           </p>
         </div>
       </section>
@@ -54,9 +59,9 @@ export default function SentinelPage() {
             ))}
           </div>
           <div className="mt-10 flex gap-3">
-            <Button href="/command">See it in command</Button>
-            <Button href="/contact" variant="ghost">
-              Talk to operations
+            <Button href="/contact">Explore collaborating</Button>
+            <Button href="/command" variant="ghost">
+              View the simulation
             </Button>
           </div>
         </div>
