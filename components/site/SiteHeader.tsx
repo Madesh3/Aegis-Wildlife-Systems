@@ -1,79 +1,84 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NAV } from "@/lib/site";
 import { Mark } from "./Mark";
+import { Icon } from "./Icon";
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-
+  const toggle = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    const close = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && open) {
+        setOpen(false);
+        toggle.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, [open]);
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-canvas/85 backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-[1400px] items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-3 text-ink">
-          <Mark className="h-5 w-5" />
-          <span className="text-[12px] font-medium tracking-[0.18em] uppercase sm:text-[13px] sm:tracking-[0.22em]">
-            <span className="sm:hidden">Aegis</span>
-            <span className="hidden sm:inline">Aegis Wildlife Systems</span>
+    <header className="site-header">
+      <div className="site-header-inner">
+        <Link
+          href="/"
+          aria-label="Aegis Wildlife Systems home"
+          className="brand"
+        >
+          <Mark className="brand-mark" />
+          <span className="brand-name">
+            AEGIS<span>WILDLIFE SYSTEMS</span>
           </span>
         </Link>
-
-        <nav className="hidden items-center gap-7 md:flex">
-          {NAV.map((item) => {
-            const active =
-              pathname === item.href || pathname.startsWith(`${item.href}/`);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`label !text-[11px] transition-colors ${
-                  active ? "!text-cyan" : "hover:!text-ink"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-          <Link
-            href="/contact"
-            className="border border-ink bg-ink px-3 py-1.5 text-[11px] tracking-[0.16em] text-canvas uppercase"
-          >
-            Request briefing
-          </Link>
+        <nav className="desktop-nav" aria-label="Main navigation">
+          {NAV.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={pathname === item.href ? "page" : undefined}
+            >
+              {item.label}
+              <span className="nav-dot" />
+            </Link>
+          ))}
         </nav>
-
+        <Link href="/contact" className="header-cta">
+          Get involved <Icon name="external" size={15} />
+        </Link>
         <button
+          ref={toggle}
           type="button"
-          className="label md:hidden"
-          onClick={() => setOpen((v) => !v)}
+          className="mobile-toggle"
+          aria-label={open ? "Close navigation" : "Open navigation"}
           aria-expanded={open}
+          aria-controls="mobile-navigation"
+          onClick={() => setOpen(!open)}
         >
-          {open ? "Close" : "Menu"}
+          <Icon name={open ? "close" : "menu"} />
         </button>
       </div>
-
-      {open ? (
-        <div className="border-t border-line px-4 py-4 md:hidden">
-          <div className="flex flex-col gap-3">
-            {NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="label !text-ink"
-                onClick={() => setOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <Link href="/contact" className="label !text-cyan" onClick={() => setOpen(false)}>
-              Request briefing
+      {open && (
+        <nav
+          id="mobile-navigation"
+          className="mobile-nav"
+          aria-label="Mobile navigation"
+        >
+          {[...NAV, { href: "/contact", label: "Get involved" }].map((item) => (
+            <Link
+              href={item.href}
+              key={item.href}
+              onClick={() => setOpen(false)}
+              aria-current={pathname === item.href ? "page" : undefined}
+            >
+              {item.label}
+              <Icon name="arrow" />
             </Link>
-          </div>
-        </div>
-      ) : null}
+          ))}
+        </nav>
+      )}
     </header>
   );
 }

@@ -2,15 +2,15 @@ export const SITE = {
   name: "Aegis Wildlife Systems",
   short: "AEGIS",
   tagline:
-    "A common operating picture for animal facilities. Detect earlier. Coordinate under pressure. Keep people and animals under human command.",
-  briefingEmail: "madesh3.work@gmail.com",
+    "An early-stage vision for protecting people and wildlife. Looking for zoo teams, builders, and like-minded collaborators to help bring it to life.",
+  contactEmail: "madesh3.work@gmail.com",
   url: "https://aegiswildlife.systems",
   facility: "Northridge Wildlife Park",
 } as const;
 
 export const NAV = [
-  { href: "/aegis", label: "Aegis" },
+  { href: "/aegis", label: "Platform" },
   { href: "/sentinel", label: "Sentinel" },
-  { href: "/command", label: "Command" },
-  { href: "/company", label: "Company" },
+  { href: "/command", label: "Prototype" },
+  { href: "/company", label: "Our mission" },
 ] as const;

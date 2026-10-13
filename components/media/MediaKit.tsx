@@ -4,74 +4,40 @@ import { useState } from "react";
 
 const POSTS = [
   {
-    id: "x1",
-    channel: "X",
-    title: "Operating picture, not another wall of cameras",
-    body: `A common operating picture for zoos — not another wall of cameras.
+    id: "mission",
+    channel: "Short introduction",
+    title: "An invitation to build together",
+    body: `I’m developing Aegis Wildlife Systems—an early-stage concept for helping zoo and wildlife teams protect people and animals.
 
-AEGIS fuses cameras, gate state, and boundary sensors so keepers see what happened, what is uncertain, and who has command.
+I have an idea and a simulation prototype. Now I’m looking for zoo teams, builders, researchers, and like-minded people to help shape what comes next.
 
-Simulation only. Humans stay in control.
+If the mission interests you, let’s connect.
 
-aegiswildlife.systems/command`,
+aegiswildlife.systems/contact`,
   },
   {
-    id: "x2",
-    channel: "X",
-    title: "The barrier moment",
-    body: `If a visitor approaches a restricted boundary, staff should not have to hunt through feeds.
+    id: "zoo",
+    channel: "For wildlife teams",
+    title: "Learn from the people doing the work",
+    body: `Do you work at a zoo, wildlife park, or sanctuary? I’d love to learn from your experience.
 
-AEGIS COMMAND is a tabletop of that moment: corroboration, degraded coverage, an approved playbook.
+I’m exploring Aegis: a concept that could bring cameras, sensor information, and team coordination into one shared view. There’s an early simulation to make the idea tangible, but real-world insight is what will help shape it.
 
-Built for animal facilities. Software does not replace steel or trained teams.
+A conversation, honest feedback, or an introduction would mean a lot.
 
-aegiswildlife.systems`,
+aegiswildlife.systems/contact`,
   },
   {
-    id: "x3",
-    channel: "X",
-    title: "Sentinel node",
-    body: `SENTINEL is a concept edge node: day/night optic, optional thermal, local buffer, signed health.
+    id: "builders",
+    channel: "For collaborators",
+    title: "A shared problem to explore",
+    body: `I’m looking to connect with engineers, designers, researchers, and animal-care specialists who care about protecting people and wildlife.
 
-Coverage still starts with a site survey.
+Aegis is at the concept and prototype stage. I’m exploring sensing, a common operating picture, and human-led response for wildlife facilities.
 
-Looking for zoo operations and animal-care leads for a 20-minute tabletop.
+If you’d like to exchange ideas, explore building together, or share a relevant opportunity, I’d love to hear from you.
 
-aegiswildlife.systems/sentinel`,
-  },
-  {
-    id: "li-zoo",
-    channel: "LinkedIn",
-    title: "For zoo / wildlife operations",
-    body: `I'm building Aegis Wildlife Systems — an AI-assisted safety layer for zoos, wildlife parks, and sanctuaries.
-
-The problem is not a lack of cameras. When something happens at a public barrier, staff need a verified location, the relevant views, independent sensor agreement, system health, and a playbook with a named owner.
-
-AEGIS COMMAND is a simulation-only tabletop of that workflow. SENTINEL is a concept edge node: observe, detect, verify, communicate. It does not replace barriers, locks, or trained teams, and it does not act on its own.
-
-If you lead operations, animal care, or emergency response at a managed animal facility, I would value a 20-minute conversation — not a sales pitch.
-
-aegiswildlife.systems`,
-  },
-  {
-    id: "li-eng",
-    channel: "LinkedIn",
-    title: "Systems / portfolio version",
-    body: `I designed and built Aegis Wildlife Systems: a simulation-only command system for animal-facility safety.
-
-The work is operator-centered decision support — sensor fusion with visible uncertainty, human-in-the-loop incident command, explicit coverage degradation, audit-friendly playbooks, and a ruggedized edge-node concept.
-
-I care about systems that still tell the truth when a camera fails, a network drops, or two sensors disagree. That is the standard I want to be measured by.
-
-Demo: aegiswildlife.systems/command`,
-  },
-  {
-    id: "dm",
-    channel: "First DM",
-    title: "Zoo operations / director",
-    body: `Hello — I'm building a tabletop command system for zoo safety (public-barrier approach / crossing). It is simulation-only and keeps keepers and vets in command.
-
-Would you or your operations / animal-care lead be open to a 20-minute look? Happy to send the link first: aegiswildlife.systems/command`,
+aegiswildlife.systems/contact`,
   },
 ];
 
